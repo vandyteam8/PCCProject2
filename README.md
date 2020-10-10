@@ -1,8 +1,8 @@
 # PCCProject2
 
-LOCATIONS:
-~/.ansible.cfg
-~/.ansible/MyInventory
-~/.config/openstack/clouds.yaml
+LOCATIONS:  
+~/.ansible.cfg  
+~/.ansible/MyInventory  
+~/.config/openstack/clouds.yaml  
 
-ansible-playbook <playbook name>
+ansible-playbook <playbook name>  
