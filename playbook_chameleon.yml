@@ -8,6 +8,7 @@
 # This playbook will install some packages on cloud VM
 # Our cloud can be Horizon Cloud VM or Chameleon VMs or AWS VMs
 - hosts: MyChameleonVMs  # machines on whom the action is performed
+  gather_facts: yes
   remote_user:  cc    # change username depending on what it is on the cloud
   collections:   # this is new starting with Ansible 2.9 (akin to importing package)
     - openstack.cloud
@@ -49,6 +50,34 @@
        regexp: broker.id=0
        line: broker.id={{r}}
        state: present
+
+  - name: Remove comment on listers
+    lineinfile:
+        dest: ~/kafka_2.13-2.6.0/config/server.properties
+	regexp: #listeners=PLAINTEXT://:9092
+	line: listeners=PLAINTEXT://:9092
+	state: present
+
+  - name: Storing IP address
+    set_fact:
+      ipaddress: "{{hostvars[inventory_hostname]['ansible_default_ipv4']['address']}}" #"{{hostvars[inventory_hostname]['ansible_env'].SSH_CONNECTION.split(' ')[2]}}"
+    run_once: yes
+
+  - name: Replace IP address
+    lineinfile:
+        dest: ~/kafka_2.13-2.6.0/config/server.properties
+        regexp: advertised.listeners=PLAINTEXT://your.host.name:9092
+        line: advertised.listeners=PLAINTEXT://{{ipaddress}}:9092
+        state: present
+
+  - name: Replace Zookeeper IP address
+    lineinfile:
+        dest: ~/kafka_2.13-2.6.0/config/server.properties
+        regexp: zookeeper.connect=localhost:2181
+        line: zookeeper.connect={{ipaddress}}:2181
+        state: present
+
+
 
 #edit config/server.properties
 
