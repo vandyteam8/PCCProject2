@@ -77,6 +77,9 @@
         line: zookeeper.connect={{ipaddress}}:2181
         state: present
 
+  - include: playbook_zookeeper.yml
+    when: "'zookeeper' in {{MyZookeeperVM}}"
+    
   - name: Start kafka
     command: kafka*/bin/kafka-server-start.sh config/server.properties &
 
@@ -90,6 +93,9 @@
     command: kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations1 --partitions 3 --replication-factor 2
 
 
+
+  - include: playbook_couchdb.yml
+    when: "'zookeeper' in {{MyCouchDBVM}}"
 
 
 
