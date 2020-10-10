@@ -1,0 +1,57 @@
+---
+#
+# EECS 4287/5287: Principles of Cloud Computing
+# Author: Aniruddha Gokhale
+# Created: Fall 2016
+# Modified: Fall 2020
+#
+# This playbook will install some packages on cloud VM
+# Our cloud can be Horizon Cloud VM or Chameleon VMs or AWS VMs
+- hosts: MyChameleonVMs  # machines on whom the action is performed
+  remote_user:  cc    # change username depending on what it is on the cloud
+  collections:   # this is new starting with Ansible 2.9 (akin to importing package)
+    - openstack.cloud
+
+  tasks:
+  - name: Install python3-kafka
+    apt: name=python3-kafka state=latest
+    become: yes
+
+  - name: Install python3-requests
+    apt: name=python3-requests state=latest
+    become: yes
+
+  - name: Install git
+    apt: name=git state=latest
+    become: yes
+
+  - name: Install default-jre (Java)
+    apt: name=default-jre state=latest
+    become: yes
+
+  - name: Cloning project from github
+    command: git clone https://github.com/vandyteam8/PCCProject1.git
+
+  - name: Downloading Kafka tar
+    command: wget https://downloads.apache.org/kafka/2.6.0/kafka_2.13-2.6.0.tgz
+
+  - name: Unzipping Kafka tar
+    command: tar -xzf kafka_2.13-2.6.0.tgz
+
+  - name: Generating brokerid
+    set_fact:
+      r: "{{ 100 | random }}"
+    run_once: yes
+
+  - name: Replace Kafka brokerid with unique number
+    lineinfile:
+       dest: ~/kafka_2.13-2.6.0/config/server.properties
+       regexp: brokerid=0
+       line: brokerid={{r}}
+       state: present
+
+#edit config/server.properties
+
+
+...
+
