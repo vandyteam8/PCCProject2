@@ -77,9 +77,23 @@
         line: zookeeper.connect={{ipaddress}}:2181
         state: present
 
+  - name: Start zookeeper #should this have a tag so that it is only run once?
+    command: kafka*/bin/zookeeper-server-start.sh config/zookeeper.properties &
+
+  - name: Start kafka
+    command: kafka*/bin/kafka-server-start.sh config/server.properties &
+
+  - name: Subscribe to kafka topics utilizations1
+    command: kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations1 --partitions 3 --replication-factor 2 &
+
+  - name: Subscribe to kafka topics utilizations2
+    command: kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations2 --partitions 3 --replication-factor 2
+
+  - name: Subscrive to kafka topic utilizations3
+    command: kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations1 --partitions 3 --replication-factor 2
 
 
-#edit config/server.properties
+
 
 
 ...
