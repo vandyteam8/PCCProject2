@@ -46,8 +46,8 @@
   - name: Replace Kafka brokerid with unique number
     lineinfile:
        dest: ~/kafka_2.13-2.6.0/config/server.properties
-       regexp: brokerid=0
-       line: brokerid={{r}}
+       regexp: broker.id=0
+       line: broker.id={{r}}
        state: present
 
 #edit config/server.properties
