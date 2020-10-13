@@ -54,9 +54,9 @@
   - name: Remove comment on listers
     lineinfile:
         dest: ~/kafka_2.13-2.6.0/config/server.properties
-	regexp: #listeners=PLAINTEXT://:9092
-	line: listeners=PLAINTEXT://:9092
-	state: present
+        regexp: #listeners=PLAINTEXT://:9092
+        line: listeners=PLAINTEXT://:9092
+        state: present
 
   - name: Storing IP address
     set_fact:
