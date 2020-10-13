@@ -18,6 +18,19 @@
         floating_ips:
           - 129.114.27.249
 
+  - name: Start second cloud
+    openstack.cloud.server:
+        state: present
+        cloud: chameleon
+        name: t8-vm2
+        image: CC-Ubuntu18.04
+        key_name: t8-varun-evan-sam
+        timeout: 200
+        flavor: m1.small
+        security_groups: "default,kafka,couchdb"
+        network: CH-822922-net
+        floating_ips:
+          - 129.114.25.233
 
 
 ... 
