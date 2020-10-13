@@ -33,5 +33,12 @@
   - include_tasks: tasks/playbook_get_facts_local_vm.yml
   - include_tasks: tasks/playbook_start_cloud.yml
 
+- name: "Install app on cloud."
+  hosts: MyChameleonVMs
+  remote_user: cc
+
+  tasks:
+  - include_tasks: tasks/playbook_install_app_on_cloud_vm.yml
+
 ...
 
