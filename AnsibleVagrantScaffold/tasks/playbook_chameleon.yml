@@ -47,7 +47,7 @@
     lineinfile:
        dest: ~/kafka_2.13-2.6.0/config/server.properties
        regexp: broker.id=0
-       line: broker.id={{r}}
+       line: broker.id.generation.enable=true
        state: present
 
   - name: Remove comment on listers
@@ -57,9 +57,13 @@
         line: listeners=PLAINTEXT://:9092
         state: present
 
+#could use this as a conditional with environment variable to set aws/chameleon
+
   - name: Storing IP address
     set_fact:
-      ipaddress: "{{hostvars[inventory_hostname]['ansible_default_ipv4']['address']}}" #"{{hostvars[inventory_hostname]['ansible_env'].SSH_CONNECTION.split(' ')[2]}}"
+      ipaddress: 129.114.25.233 
+      #"{{hostvars[inventory_hostname]['ansible_default_ipv4']['address']}}" 
+      #"{{hostvars[inventory_hostname]['ansible_env'].SSH_CONNECTION.split(' ')[2]}}"
     run_once: yes
 
   - name: Replace IP address
@@ -77,19 +81,19 @@
         state: present
 
     
-  - name: Start kafka
-    command: kafka*/bin/kafka-server-start.sh config/server.properties &
-
-  - name: Subscribe to kafka topics utilizations1
-    command: kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations1 --partitions 3 --replication-factor 2 &
-
-  - name: Subscribe to kafka topics utilizations2
-    command: kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations2 --partitions 3 --replication-factor 2
-
-  - name: Subscrive to kafka topic utilizations3
-    command: kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations1 --partitions 3 --replication-factor 2
-
-
+#  - name: Start kafka
+#    command: kafka*/bin/kafka-server-start.sh config/server.properties &
+#
+#  - name: Subscribe to kafka topics utilizations1
+#    command: kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations1 --partitions 3 --replication-factor 2 &
+#
+#  - name: Subscribe to kafka topics utilizations2
+#    command: kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations2 --partitions 3 --replication-factor 2
+#
+#  - name: Subscrive to kafka topic utilizations3
+#    command: kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations1 --partitions 3 --replication-factor 2
+#
+#
 
 ...
 

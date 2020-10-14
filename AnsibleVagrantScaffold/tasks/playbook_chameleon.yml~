@@ -30,12 +30,13 @@
   - name: Downloading Kafka tar
     get_url:
       url: https://downloads.apache.org/kafka/2.6.0/kafka_2.13-2.6.0.tgz
-      dest: .
+      dest: /home/cc
 
   - name: Unzipping Kafka tar
     unarchive:
-      src: kafka_2.13-2.6.0.tgz
-      dest: .
+      src: /home/cc/kafka_2.13-2.6.0.tgz
+      dest: /home/cc
+      remote_src: yes
 
   - name: Generating brokerid
     set_fact:
