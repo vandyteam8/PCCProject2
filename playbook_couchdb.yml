@@ -13,13 +13,50 @@
   collections:   # this is new starting with Ansible 2.9 (akin to importing package)
     - openstack.cloud
 
+# Still editing the coucbdb settings
+# Don't run just yet
+
   tasks:
   - name: Install couchdb
     debug: var = "Not implemented."
 
+- couchdb_settings:
+  httpd:
+    port: "5984"
+    bind_address: "0.0.0.0"
 
+- couchdb_admins:
+  admin: admin
+
+- couchdb_users:
+  user_with_roles:
+    password: vandy #review
+    roles:
+      - developer
+      - manager
+  user_without_roles:
+    password: vandy #review
+
+- couchdb_databases:
+  database_without_security: {}
+  database_with_admins:
+    admins:
+      names:
+        - user_without_roles
+      roles:
+        - manager
+  database_with_members:
+    members:
+      roles:
+        - developer
+
+- couchdb_replication:
+  - source: my_database
+    target: http://{{backup.example.com}}:5984/my_database
+    continuous: yes
+
+- couchdb_url: "http://localhost:5984"
 
 
 
 ...
-
