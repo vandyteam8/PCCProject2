@@ -10,16 +10,16 @@
 
     
   - name: Start kafka
-    command: kafka*/bin/kafka-server-start.sh config/server.properties &
+    command: /home/cc/kafka*/bin/kafka-server-start.sh config/server.properties &
 
   - name: Subscribe to kafka topics utilizations1
-    command: kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations1 --partitions 3 --replication-factor 2 &
+    command: /home/cc/kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations1 --partitions 3 --replication-factor 2 &
 
   - name: Subscribe to kafka topics utilizations2
-    command: kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations2 --partitions 3 --replication-factor 2
+    command: /home/cc/kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations2 --partitions 3 --replication-factor 2
 
   - name: Subscrive to kafka topic utilizations3
-    command: kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations1 --partitions 3 --replication-factor 2
+    command: /home/cc/kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations1 --partitions 3 --replication-factor 2
 
 
 

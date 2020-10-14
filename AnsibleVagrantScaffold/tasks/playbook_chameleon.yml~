@@ -27,7 +27,7 @@
   - name: Cloning project from github
     git: 
       repo: https://github.com/vandyteam8/PCCProject1.git
-      dest: /home/cc
+      dest: /home/cc/PCCProject1
       clone: yes
 
   - name: Downloading Kafka tar
@@ -40,11 +40,6 @@
       src: /home/cc/kafka_2.13-2.6.0.tgz
       dest: /home/cc
       remote_src: yes
-
-  - name: Generating brokerid
-    set_fact:
-      r: "{{ 100 | random }}"
-    run_once: yes
 
   - name: Replace Kafka brokerid with unique number
     lineinfile:
@@ -62,9 +57,9 @@
 
 #could use this as a conditional with environment variable to set aws/chameleon
 
-  - name: Storing IP address
+  - name: Storing IP address for Zookeeper
     set_fact:
-      ipaddress: 129.114.25.233 
+      ipaddress: 129.114.25.233
       #"{{hostvars[inventory_hostname]['ansible_default_ipv4']['address']}}" 
       #"{{hostvars[inventory_hostname]['ansible_env'].SSH_CONNECTION.split(' ')[2]}}"
     run_once: yes
@@ -73,7 +68,7 @@
     lineinfile:
         dest: ~/kafka_2.13-2.6.0/config/server.properties
         regexp: advertised.listeners=PLAINTEXT://your.host.name:9092
-        line: advertised.listeners=PLAINTEXT://{{ipaddress}}:9092
+        line: advertised.listeners=PLAINTEXT://{{ansible_facts['interface_ip']}}:9092
         state: present
 
   - name: Replace Zookeeper IP address
