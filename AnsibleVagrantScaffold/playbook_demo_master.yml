@@ -31,7 +31,7 @@
     become: yes
 
   - include_tasks: tasks/playbook_get_facts_local_vm.yml
-  - include_tasks: tasks/playbook_start_cloud.yml
+  - include_tasks: tasks/playbook_start_chameleon.yml
 
   - name: Wait a minute for server to start up...
     pause:
@@ -46,7 +46,7 @@
   gather_facts: yes
 
   tasks:
-  - include_tasks: tasks/playbook_chameleon.yml
+  - include_tasks: tasks/playbook_install_cloud.yml
 
 - name: Start Zookeeper.
   hosts: MyZookeeper
