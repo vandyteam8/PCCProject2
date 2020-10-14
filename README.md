@@ -8,8 +8,8 @@ Control Flow
   * Vagrantfile then launches Ansible provision  
 * Ansible playbook launches with playbook_demo_master.yml  
   * Ansible gets local VM facts  
-  * Ansible then includes playbook_start_cloud.yml which spins up the Chameleon Cloud  
-  * Then use playbook_chameleon.yml (should be renamed to be more generalized) to install Kafka/Zookeeper  
+  * Ansible then includes playbook_start_chameleon.yml which spins up the Chameleon Cloud  
+  * Then use playbook_install_cloud.yml to install Kafka/Zookeeper  
   * ###MISSING### Playbook_zookeeper.yml should start Zookeeper on VM2  
   * ###MISSING### playbook_kafka.yml should start Kafka on both VMs  
   * ##NOT WORKING## playbook_couchdb.yml should install CouchDB on VM3  
