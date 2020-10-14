@@ -33,12 +33,39 @@
   - include_tasks: tasks/playbook_get_facts_local_vm.yml
   - include_tasks: tasks/playbook_start_cloud.yml
 
+  - name: Wait a minute for server to start up...
+    pause:
+      minutes: 2
+  
+
 - name: "Install app on cloud."
   hosts: MyChameleonVMs
   remote_user: cc
+  collections:
+    openstack.cloud
+
+  gather_facts: yes
 
   tasks:
-  - include_tasks: tasks/playbook_install_app_on_cloud_vm.yml
+  - include_tasks: tasks/playbook_chameleon.yml
+
+- name: Start Zookeeper.
+  hosts: MyZookeeper
+  remote_user: cc
+  gather_facts: yes
+
+  tasks:
+  - include_tasks: tasks/playbook_zookeeper.yml
+
+- name: Install CouchDB
+  hosts: MyCouchDB
+  remote_user: cc
+  gather_facts: yes
+
+  tasks:
+  - include_tasks: tasks/playbook_couchdb.yml
+
+
 
 ...
 
