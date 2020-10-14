@@ -23,7 +23,7 @@
       groups: MyChameleonVMs
       ansible_host: "{{ t8_vm1_params.openstack.accessIPv4 }}"
       ansible_connection: ssh
-      ansible_ssh_private_key_file: ./.ssh/t8-varun-evan-sam.pem
+      ansible_ssh_private_key_file: /home/vagrant/.ssh/t8-varun-evan-sam.pem
       ansible_user: cc
   - name: Start second cloud
     openstack.cloud.server:
@@ -44,7 +44,7 @@
       groups: MyChameleonVMs
       ansible_host: "{{ t8_vm2_params.openstack.accessIPv4 }}"
       ansible_connection: ssh
-      ansible_ssh_private_key_file: ./.ssh/t8-varun-evan-sam.pem
+      ansible_ssh_private_key_file: /home/vagrant/.ssh/t8-varun-evan-sam.pem
       ansible_user: cc
 
 
