@@ -25,7 +25,10 @@
     become: yes
 
   - name: Cloning project from github
-    command: git clone https://github.com/vandyteam8/PCCProject1.git
+    git: 
+      repo: https://github.com/vandyteam8/PCCProject1.git
+      dest: /home/cc/PCCProject1
+      clone: yes
 
   - name: Downloading Kafka tar
     get_url:

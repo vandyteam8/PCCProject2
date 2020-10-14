@@ -7,15 +7,36 @@
 #
 # This playbook will install some packages on cloud VM
 # Our cloud can be Horizon Cloud VM or Chameleon VMs or AWS VMs
-- hosts: MyZookeeperVM  # machines on whom the action is performed
-  gather_facts: yes
-  remote_user:  cc    # change username depending on what it is on the cloud
-  collections:   # this is new starting with Ansible 2.9 (akin to importing package)
-    - openstack.cloud
 
-  tasks:
+  - name: download couchdb PPA repository
+    become: yes
+    apt_key: 
+      url: https://couchdb.apache.org/rep/bintray-pubkey.asc
+      state: present
+      
   - name: Install couchdb
-    debug: var = "Not implemented."
+    become: yes
+    apt:
+      name: couchdb
+    register: couchdb_install
+
+  - name: stop couchdb
+    become: yes
+    service:
+      name: couchdb
+      state: stopped
+    when: couchdb_install.changed
+
+  - name: couchdb bind to 0.0.0.0
+    lineinfile: 
+      path: /etc/local.ini
+      regexp: ;bind_address = 127.0.0.1
+      line: bind_address = 0.0.0.0
+
+
+
+
+
 
 
 
