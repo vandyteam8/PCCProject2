@@ -35,7 +35,8 @@
 
   - name: Wait a minute for server to start up...
     pause:
-      minutes: 1
+      minutes: 2
+  
 
 - name: "Install app on cloud."
   hosts: MyChameleonVMs
