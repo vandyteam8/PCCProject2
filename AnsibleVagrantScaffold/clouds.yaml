@@ -12,3 +12,9 @@ clouds:
             user_domain_name: default
             project_domain_name: default
         region_name: "KVM@TACC"
+
+    amazon:
+        auth:
+            aws_access_key_id: 
+            aws_secret_access_key:
+            
