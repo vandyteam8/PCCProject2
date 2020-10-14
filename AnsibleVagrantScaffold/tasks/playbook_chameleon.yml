@@ -34,8 +34,9 @@
 
   - name: Unzipping Kafka tar
     unarchive:
-      src: kafka_2.13-2.6.0.tgz
+      src: /home/cc/kafka_2.13-2.6.0.tgz
       dest: /home/cc
+      remote_src: yes
 
   - name: Generating brokerid
     set_fact:
