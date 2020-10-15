@@ -17,7 +17,14 @@
         network: CH-822922-net
         floating_ips:
           - 129.114.25.233
+        result: server1
 
+  - name: show result of server1
+    debug: var=server1
+
+  - name: pausing for 10 minutes
+    pause:
+      minutes: 10
 
   - name: Start second cloud
     openstack.cloud.server:

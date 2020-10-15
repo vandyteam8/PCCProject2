@@ -26,12 +26,19 @@
 
 
   tasks:    # the task to be performed (here I am showing the effect of include_)
+  - name: Get the value of an environment variable
+    shell: 'echo $CLOUD_VAR'
+    register: cloudvariable
+
+  - debug: msg="The cloud variable is {{ cloudvariable.stdout }}"
+
+
   - name: Install openstacksdk
     apt: name=python3-openstacksdk state=latest
     become: yes
 
   - include_tasks: tasks/playbook_get_facts_local_vm.yml
-  - include_tasks: tasks/playbook_start_chameleon.yml
+  - include_tasks: tasks/playbook_start_cloud.yml
 
   - name: Wait a minute for server to start up...
     pause:
