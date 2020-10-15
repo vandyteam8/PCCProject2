@@ -85,8 +85,18 @@
       url: http://admin:vandy@127.0.0.1:5984
       method: GET
 
+  - name: copying createdb.py
+    copy:
+      src: ./createdb.py
+      dest: /home/cc/
+
+  - file: 
+      path: /home/cc/createdb.py
+      owner: cc
+      mode: 0700
+
   - name: Creating database.
-    command: ./createdb.py
+    command: /home/cc/createdb.py
 
 
 
