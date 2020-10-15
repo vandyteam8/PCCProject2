@@ -78,7 +78,7 @@
     lineinfile:
         dest: ~/kafka_2.13-2.6.0/config/server.properties
         regexp: advertised.listeners=PLAINTEXT://your.host.name:9092
-        line: advertised.listeners=PLAINTEXT://your.host.name:9092
+        line: "advertised.listeners=PLAINTEXT://{{ansible_host}}:9092"
         state: present
 
   - name: Replace Zookeeper IP address
@@ -87,21 +87,6 @@
         regexp: zookeeper.connect=localhost:2181
         line: zookeeper.connect={{ipaddress}}:2181
         state: present
-
-    
-#  - name: Start kafka
-#    command: kafka*/bin/kafka-server-start.sh config/server.properties &
-#
-#  - name: Subscribe to kafka topics utilizations1
-#    command: kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations1 --partitions 3 --replication-factor 2 &
-#
-#  - name: Subscribe to kafka topics utilizations2
-#    command: kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations2 --partitions 3 --replication-factor 2
-#
-#  - name: Subscrive to kafka topic utilizations3
-#    command: kafka*/bin/kafka-topics.sh --zookeeper 54.145.170.98:2181 --create --topic utilizations1 --partitions 3 --replication-factor 2
-#
-#
 
 ...
 
