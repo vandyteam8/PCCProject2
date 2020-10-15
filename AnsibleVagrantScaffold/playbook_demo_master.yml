@@ -56,6 +56,14 @@
   tasks:
   - include_tasks: tasks/playbook_zookeeper.yml
 
+- name: Start Kafkas.
+  hosts: MyChameleonVMs
+  remote_user: cc
+  gather_facts: yes
+
+  tasks:
+  - include_tasks: tasks/playbook_kafka_start.yml
+
 - name: Install CouchDB
   hosts: MyCouchDB
   remote_user: cc
