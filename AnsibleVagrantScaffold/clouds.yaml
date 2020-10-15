@@ -12,3 +12,11 @@ clouds:
             user_domain_name: default
             project_domain_name: default
         region_name: "KVM@TACC"
+
+    amazon:
+        auth:
+            region: us-east-1
+            aws_access_key_id: ASIAQYZYWUWKDRT52Z6T
+            aws_secret_access_key: 2ySReczn0J34nJuIMJ27BKhAERlv6L5f4LPrBYVt
+            aws_session_token: FwoGZXIvYXdzEJ7//////////wEaDP5WOUvQmPFxbDMNMiLMAdc3WIh9eIjtmnMayzvCz0i2hP6mN4fIaoD9zR93XAS2qqjoL7rll53kvVGiwB8iapLT7n32/MgvRM2xq2bP26MhLJaVFSeLntYw26QJRG5qF7T395fA2FxVVGzN6dad+GwqkwqkzKOnZ0P/Dfb09CYO0xvtlS2tJ7KXZdY/j3yrlr9/eJA3ZtagBcIGWoKPBLGUHTTV+5cNWYZnol1yrHmJpHLVD1jfQdL1Ep383N3SlHhAPhuXFlUnk0EUvyYO3i/GhiOqWyGumBB8HyjTzp38BTItDiJiv/ZDfSvj4u5/mw22nSLMFD1RNjXm2Owm7EcyOIOJmFtnkz0fzDipbYRk
+            
