@@ -85,21 +85,9 @@
       url: http://admin:vandy@127.0.0.1:5984
       method: GET
 
-  - name: creating admin user
-    uri: 
-      url: http://admin:vandy@127.0.0.1:5984/_config/admins/user 
-      method: PUT
-      body: "password"
-    notify: restart couchdb
-
-  - name: pause for couchdb
-    pause:
-      seconds: 15
-
   - name: Creating database.
-    uri: 
-      url: http://user:password@127.0.0.1:5984/project1
-      method: PUT
+    command: ./createdb.py
+
 
 
 ...
