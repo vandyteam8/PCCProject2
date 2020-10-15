@@ -24,9 +24,13 @@
     apt: name=default-jre state=latest
     become: yes
 
-  - name: Install boto3 (Python for AWS)
-    apt: pip install boto3 #may have to check if python3/pip3 is installed
+  - name: Install pip3
+    apt: name=python3-pip state=latest
     become: yes
+
+  - name: Install boto3 (Python for AWS)
+    command: pip3 install boto3 #may have to check if python3/pip3 is installed
+
 
   - name: Cloning project from github
     git: 
