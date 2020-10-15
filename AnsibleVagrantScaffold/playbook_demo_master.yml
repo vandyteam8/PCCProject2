@@ -31,7 +31,7 @@
     become: yes
 
   - include_tasks: tasks/playbook_get_facts_local_vm.yml
-  - include_tasks: tasks/playbook_start_chameleon.yml
+  - include_tasks: tasks/playbook_start_cloud.yml
 
   - name: Wait a minute for server to start up...
     pause:

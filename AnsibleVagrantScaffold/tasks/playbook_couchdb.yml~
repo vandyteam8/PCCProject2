@@ -12,7 +12,7 @@
     become: yes
     get_url: 
       url: https://couchdb.apache.org/repo/bintray-pubkey.asc
-      dest: /home/vagrant/
+      dest: /home/cc/
 
   - name: apt-key as command
     command: apt-key add /home/cc/bintray-pubkey.asc
@@ -85,21 +85,19 @@
       url: http://admin:vandy@127.0.0.1:5984
       method: GET
 
-  - name: creating admin user
-    uri: 
-      url: http://admin:vandy@127.0.0.1:5984/_config/admins/user 
-      method: PUT
-      body: "password"
-    notify: restart couchdb
+  - name: copying createdb.py
+    copy:
+      src: ./createdb.py
+      dest: /home/cc/
 
-  - name: pause for couchdb
-    pause:
-      seconds: 15
+  - file: 
+      path: /home/cc/createdby.py
+      owner: cc
+      mode: 0700
 
   - name: Creating database.
-    uri: 
-      url: http://user:password@127.0.0.1:5984/project1
-      method: PUT
+    command: /home/cc/createdb.py
+
 
 
 ...
