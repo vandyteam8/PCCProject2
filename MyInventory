@@ -41,8 +41,8 @@
 #
 [MyChameleonVMs]
 # The following will need to be changed by the user (their floating IP on chameleon and the full name and location of the pem file)
-#129.114.25.233 ansible_connection=ssh ansible_ssh_private_key_file=~/.ssh/t8-varun-evan-sam.pem ansible_user=cc
-#129.114.27.249 ansible_connection=ssh ansible_ssh_private_key_file=~/.ssh/t8-varun-evan-sam.pem ansible_user=cc
+129.114.25.233 ansible_connection=ssh ansible_ssh_private_key_file=~/.ssh/t8-varun-evan-sam.pem ansible_user=cc ansible_host=129.114.25.233
+129.114.27.249 ansible_connection=ssh ansible_ssh_private_key_file=~/.ssh/t8-varun-evan-sam.pem ansible_user=cc ansible_host=129.114.27.249
 
 [MyZookeeper]
 #129.114.25.233 ansible_connection=ssh ansible_ssh_private_key_file=~/.ssh/t8-varun-evan-sam.pem ansible_user=cc

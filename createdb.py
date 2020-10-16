@@ -10,7 +10,7 @@ LOCALHOST = "127.0.0.1"
 dbname = "project1"
 
 def couchdbCreateDB(ip):
-    baseurl = "http://{user}:{pword}@{ipaddr}:5984/{dbname}".format(user=user, pword=pword, ipaddr=ip, dbname=dbname)
+    baseurl = "http://{user}:{pword}@{ipaddr}:5984/".format(user=user, pword=pword, ipaddr=ip)
     url = baseurl + dbname
     s = requests.Session()
     s.headers.update({"Content-type": "application/json"})

@@ -1,4 +1,4 @@
----
+
 #
 # EECS 4287/5287: Principles of Cloud Computing
 # Author: Aniruddha Gokhale
@@ -7,12 +7,11 @@
 #
 # This playbook will install some packages on cloud VM
 # Our cloud can be Horizon Cloud VM or Chameleon VMs or AWS VMs
-
-  - name: Start zookeeper #should this have a tag so that it is only run once?
-    command: kafka*/bin/zookeeper-server-start.sh config/zookeeper.properties &
-
-
-
+    
+  - name: Start Python Consumer on Cloud.
+    command: nohup python3 /home/cc/PCCProject1/KafkaStreamsPython/consumer.py 129.114.27.249
+    async: 36000
+    poll: 0
 
 
 ...
