@@ -7,19 +7,11 @@
 #
 # This playbook will install some packages on cloud VM
 # Our cloud can be Horizon Cloud VM or Chameleon VMs or AWS VMs
-
-#  - name: Git clone PCCProject1
-#    git:
-#      repo: https://github.com/vandyteam8/PCCProject1
-#      dest: /home/vagrant/
-#      clone: yes
     
-#  - name: Start Python Producer on Local VM.
-#    command: python3 /home/cc/PCCProject1/KafkaStreamsPython/producer.py 129.114.25.233
-
-
-
-
+  - name: Start Python Producer on Vagrant
+    command: python3 /home/cc/PCCProject1/KafkaStreamsPython/producer.py 129.114.25.233
+    async: 36000
+    poll: 0
 
 
 ...

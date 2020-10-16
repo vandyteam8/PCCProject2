@@ -10,7 +10,9 @@
 
     
   - name: Start kafka
-    command: /home/cc/kafka_2.13-2.6.0/bin/kafka-server-start.sh -daemon /home/cc/kafka_2.13-2.6.0/config/server.properties
+    command: /home/cc/kafka_2.13-2.6.0/bin/kafka-server-start.sh /home/cc/kafka_2.13-2.6.0/config/server.properties
+    async: 36000
+    poll: 0
 
   - name: Waiting for Kafka.
     pause:

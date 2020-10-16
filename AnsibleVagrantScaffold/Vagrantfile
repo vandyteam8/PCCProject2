@@ -139,5 +139,6 @@ Vagrant.configure("2") do |config|
     ansible.galaxy_command = "ansible-galaxy collection install openstack.cloud"
     ansible.galaxy_command = "ansible-galaxy collection install amazon.aws"
     ansible.galaxy_command = "ansible-galaxy collection install community.aws"
+    ansible.extra_vars = { ansible_python_interpreter:"/usr/bin/python3" }
   end
 end
