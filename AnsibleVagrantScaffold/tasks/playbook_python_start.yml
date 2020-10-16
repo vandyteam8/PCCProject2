@@ -7,19 +7,12 @@
 #
 # This playbook will install some packages on cloud VM
 # Our cloud can be Horizon Cloud VM or Chameleon VMs or AWS VMs
-
     
   - name: Start Python Consumer on Cloud.
-    command: python3 /home/cc/PCCProject1/KafkaStreamsPython/consumer.py 129.114.27.249 &
+    command: nohup python3 /home/cc/PCCProject1/KafkaStreamsPython/consumer.py 129.114.27.249 &
     async: 45
     poll: 0
-
-  - name: Waiting for Python Consumer
-    pause:
-      seconds: 10
-
-
-
+    become: yes
 
 
 ...

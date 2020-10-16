@@ -10,14 +10,10 @@
 
     
   - name: Start Python Consumer on Cloud.
-    command: python3 /home/cc/PCCProject1/KafkaStreamsPython/consumer.py 129.114.27.249 &
-
-  - name: Waiting for Python Consumer
-    pause:
-      seconds: 10
-
-
-
+    command: nohup python3 /home/cc/PCCProject1/KafkaStreamsPython/consumer.py 129.114.27.249 &
+    async: 45
+    poll: 0
+    become: yes
 
 
 ...
