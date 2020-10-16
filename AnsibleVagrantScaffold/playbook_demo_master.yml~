@@ -31,7 +31,7 @@
     become: yes
 
   - include_tasks: tasks/playbook_get_facts_local_vm.yml
-  - include_tasks: tasks/playbook_start_chameleon.yml
+  - include_tasks: tasks/playbook_start_cloud.yml
 
   - name: Wait a minute for server to start up...
     pause:
@@ -56,6 +56,19 @@
   tasks:
   - include_tasks: tasks/playbook_zookeeper.yml
 
+  - name: Waiting for Zookeeper.
+    pause:
+      seconds: 30
+
+- name: Start Kafkas and Consumers.
+  hosts: MyChameleonVMs
+  remote_user: cc
+  gather_facts: yes
+
+  tasks:
+  - include_tasks: tasks/playbook_kafka_start.yml
+#  - include_tasks: tasks/playbook_python_start.yml
+
 - name: Install CouchDB
   hosts: MyCouchDB
   remote_user: cc
@@ -64,6 +77,13 @@
   tasks:
   - include_tasks: tasks/playbook_couchdb.yml
 
+#- name: Python Producer.py
+#  hosts: MyLocalVMs
+#  remote_user: vagrant
+#  gather_facts: yes
+
+#  tasks:
+#  - include_tasks tasks/playbook-python_start_local.yml
 
 
 ...

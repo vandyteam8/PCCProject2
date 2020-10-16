@@ -60,13 +60,14 @@
     pause:
       seconds: 30
 
-- name: Start Kafkas.
+- name: Start Kafkas and Consumers.
   hosts: MyChameleonVMs
   remote_user: cc
   gather_facts: yes
 
   tasks:
   - include_tasks: tasks/playbook_kafka_start.yml
+  - include_tasks: tasks/playbook_python_start.yml
 
 - name: Install CouchDB
   hosts: MyCouchDB
@@ -76,7 +77,14 @@
   tasks:
   - include_tasks: tasks/playbook_couchdb.yml
 
-
+#- name: Python Producer.py
+#  hosts: MyLocalVMs
+#  remote_user: vagrant
+#  gather_facts: yes
+#
+#  tasks:
+#  - include_tasks tasks/playbook-python_start_local.yml
+#
 
 ...
 
