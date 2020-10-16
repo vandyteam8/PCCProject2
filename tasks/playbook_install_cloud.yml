@@ -75,20 +75,15 @@
 
   - name: Storing IP address for Zookeeper
     set_fact:
-      zooipaddress: " {{ t8_vm1_params.openstack.accessIPv4 }} "
+      zooipaddress: "129.114.25.233"
       #"{{hostvars[inventory_hostname]['ansible_default_ipv4']['address']}}" 
       #"{{hostvars[inventory_hostname]['ansible_env'].SSH_CONNECTION.split(' ')[2]}}"
-    run_once: yes
 
   - name: Replace Kafka IP address -- advertised.listener set to FLOATING IP
     lineinfile:
         dest: ~/kafka_2.13-2.6.0/config/server.properties
         regexp: advertised.listeners=PLAINTEXT://your.host.name:9092
-<<<<<<< HEAD:AnsibleVagrantScaffold/tasks/playbook_install_cloud.yml
-        line: "advertised.listeners=PLAINTEXT://{{ ansible_host }}:9092"
-=======
         line: "advertised.listeners=PLAINTEXT://{{ansible_host}}:9092"
->>>>>>> working-hardcode:tasks/playbook_install_cloud.yml
         state: present
 
   - name: Replace Zookeeper IP address
@@ -98,15 +93,14 @@
         line: zookeeper.connect={{zooipaddress}}:2181
         state: present
 
-<<<<<<< HEAD:AnsibleVagrantScaffold/tasks/playbook_install_cloud.yml
-=======
+
 #  - name: Replace Zookeeper maxClientCnxns
 #    lineinfile:
 #        dest: ~/kafka_2.13-2.6.9/config/zookeeper.properties
 #        regexp: maxClientCnxns=0
 #        line: maxClientCnxns=2
 #        state: present
->>>>>>> working-hardcode:tasks/playbook_install_cloud.yml
+
 
 ...
 
