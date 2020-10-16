@@ -12,14 +12,18 @@
   - name: Start kafka
     command: /home/cc/kafka_2.13-2.6.0/bin/kafka-server-start.sh -daemon home/cc/kafka_2.13-2.6.0/config/server.properties
 
+  - name: Waiting for Kafka.
+    pause:
+      seconds: 60
+
   - name: Subscribe to kafka topics utilizations1
-    command: /home/cc/kafka_2.13-2.6.0/bin/kafka-topics.sh --zookeeper 129.114.25.233:2181 --create --topic utilizations1 --partitions 3 --replication-factor 2
+    command: /home/cc/kafka_2.13-2.6.0/bin/kafka-topics.sh --zookeeper 129.114.25.233:2181 --create --topic utilizations1 --partitions 3 --replication-factor 1
 
   - name: Subscribe to kafka topics utilizations2
-    command: /home/cc/kafka_2.13-2.6.0/bin/kafka-topics.sh --zookeeper 129.114.25.233:2181 --create --topic utilizations2 --partitions 3 --replication-factor 2 
+    command: /home/cc/kafka_2.13-2.6.0/bin/kafka-topics.sh --zookeeper 129.114.25.233:2181 --create --topic utilizations2 --partitions 3 --replication-factor 1 
 
   - name: Subscrive to kafka topic utilizations3
-    command: /home/cc/kafka_2.13-2.6.0/bin/kafka-topics.sh --zookeeper 129.114.25.233:2181 --create --topic utilizations1 --partitions 3 --replication-factor 2
+    command: /home/cc/kafka_2.13-2.6.0/bin/kafka-topics.sh --zookeeper 129.114.25.233:2181 --create --topic utilizations1 --partitions 3 --replication-factor 1
 
 
 

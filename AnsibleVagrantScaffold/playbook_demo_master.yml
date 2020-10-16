@@ -56,6 +56,10 @@
   tasks:
   - include_tasks: tasks/playbook_zookeeper.yml
 
+  - name: Waiting for Zookeeper.
+    pause:
+      seconds: 30
+
 - name: Start Kafkas.
   hosts: MyChameleonVMs
   remote_user: cc

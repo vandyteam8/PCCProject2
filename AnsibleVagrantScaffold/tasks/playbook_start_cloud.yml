@@ -13,10 +13,10 @@
         key_name: t8-varun-evan-sam
         timeout: 200
         flavor: m1.small
-        security_groups: "default,kafka,couchdb"
+        security_groups: "default,kafka,couchdb,zookeeper-couchdb-kafka"
         network: CH-822922-net
         floating_ips:
-          - 129.114.27.249
+          - 129.114.25.233
 
   - name: Start second cloud
     openstack.cloud.server:
@@ -27,10 +27,10 @@
         key_name: t8-varun-evan-sam
         timeout: 200
         flavor: m1.small
-        security_groups: "default,kafka,couchdb"
+        security_groups: "default,kafka,couchdb,zookeeper-couchdb-kafka"
         network: CH-822922-net
         floating_ips:
-          - 129.114.25.233
+          - 129.114.27.249
 
 
 

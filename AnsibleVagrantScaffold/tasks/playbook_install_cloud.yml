@@ -8,6 +8,14 @@
 # This playbook will install some packages on cloud VM
 # Our cloud can be Horizon Cloud VM or Chameleon VMs or AWS VMs
 
+  - name: ufw allow port 2181
+    command: ufw allow 2181
+    become: yes
+
+  - name: ufw allow port 9092
+    command: ufw allow 9092
+    become: yes
+
   - name: Install python3-kafka
     apt: name=python3-kafka state=latest
     become: yes
@@ -71,8 +79,6 @@
       #"{{hostvars[inventory_hostname]['ansible_default_ipv4']['address']}}" 
       #"{{hostvars[inventory_hostname]['ansible_env'].SSH_CONNECTION.split(' ')[2]}}"
     run_once: yes
-
-  # THIS HAS NOT BEEN IMPLEMENTED YET
 
   - name: Replace Kafka IP address -- advertised.listener set to FLOATING IP
     lineinfile:
