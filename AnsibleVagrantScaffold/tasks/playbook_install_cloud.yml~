@@ -94,5 +94,12 @@
         line: zookeeper.connect={{ipaddress}}:2181
         state: present
 
+  - name: Replace Zookeeper maxClientCnxns
+    lineinfile:
+        dest: ~/kafka_2.13-2.6.9/config/zookeeper.properties
+        regexp: maxClientCnxns=0
+        line: maxClientCnxns=2
+        state: present
+
 ...
 
